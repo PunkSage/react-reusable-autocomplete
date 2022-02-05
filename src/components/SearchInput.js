@@ -35,7 +35,7 @@ export default function SearchInput({
         ref={ref}
         spellCheck={false}
         value={searchString}
-        onChange={setSearchString}
+        onInput={setSearchString}
         onBlur={onBlur}
         onFocus={handleOnFocus}
         placeholder={placeholder}
@@ -70,7 +70,7 @@ SearchInput.propTypes = {
 }
 
 const StyledSearchInput = styled.div`
-  min-height: ${(props) => props.theme.height};
+  height: ${(props) => props.theme.height};
   width: 100%;
 
   display: flex;

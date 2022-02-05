@@ -1,19 +1,20 @@
 const defaultTheme = {
-  height: '44px',
+  backgroundColor: 'white',
   border: '1px solid #dfe1e5',
   borderRadius: '24px',
-  backgroundColor: 'white',
   boxShadow: 'rgba(32, 33, 36, 0.28) 0px 1px 6px 0px',
-  hoverBackgroundColor: '#eee',
+  clearIconMargin: '3px 14px 0 0',
   color: '#212121',
-  fontSize: '16px',
   fontFamily: 'Arial',
+  fontSize: '16px',
+  height: '100%',
+  hoverBackgroundColor: '#eee',
   iconColor: 'grey',
   lineColor: 'rgb(232, 234, 237)',
   placeholderColor: 'grey',
-  zIndex: 0,
-  clearIconMargin: '3px 14px 0 0',
-  searchIconMargin: '0 0 0 16px'
+  searchIconMargin: '0 0 0 16px',
+  width: '100%',
+  zIndex: 1000,
 }
 
 const defaultFuseOptions = {

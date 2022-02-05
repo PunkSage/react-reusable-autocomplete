@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Fuse from 'fuse.js'
 import { defaultTheme, defaultFuseOptions } from '../config/config'
@@ -29,7 +29,7 @@ export default function ReactSearchAutocomplete(props) {
     styling,
     resultStringKeyName,
     inputSearchString,
-    formatResult,
+    formatResult
   } = props
 
   const theme = { ...defaultTheme, ...styling }
@@ -43,7 +43,7 @@ export default function ReactSearchAutocomplete(props) {
 
   const callOnSearch = (keyword) => {
     let newResults = []
-    if (keyword?.length > 0) {
+    if (keyword?.length >= 0) {
       newResults = fuseResults(keyword)
       setResults(newResults)
       onSearch(keyword, newResults)
@@ -59,7 +59,7 @@ export default function ReactSearchAutocomplete(props) {
     [items]
   )
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setSearchString(inputSearchString)
   }, [inputSearchString])
 
@@ -87,29 +87,27 @@ export default function ReactSearchAutocomplete(props) {
   return (
     <ThemeProvider theme={theme}>
       <StyledReactSearchAutocomplete>
-        <div className="wrapper">
-          <SearchInput
-            searchString={searchString}
-            setSearchString={handleSetSearchString}
-            autoFocus={autoFocus}
-            onBlur={() => setResults([])}
-            onFocus={onFocus}
-            onClear={onClear}
-            placeholder={placeholder}
-            showIcon={showIcon}
-            showClear={showClear}
-          />
-          <Results
-            results={results}
-            onClick={handleOnClick}
-            onHover={onHover}
-            setSearchString={setSearchString}
-            showIcon={showIcon}
-            maxResults={maxResults}
-            resultStringKeyName={resultStringKeyName}
-            formatResult={formatResult}
-          />
-        </div>
+        <SearchInput
+          searchString={searchString}
+          setSearchString={handleSetSearchString}
+          autoFocus={autoFocus}
+          onBlur={() => {}}
+          onFocus={onFocus}
+          onClear={onClear}
+          placeholder={placeholder}
+          showIcon={showIcon}
+          showClear={showClear}
+        />
+        <Results
+          results={results}
+          onClick={handleOnClick}
+          onHover={onHover}
+          setSearchString={setSearchString}
+          showIcon={showIcon}
+          maxResults={maxResults}
+          resultStringKeyName={resultStringKeyName}
+          formatResult={formatResult}
+        />
       </StyledReactSearchAutocomplete>
     </ThemeProvider>
   )
@@ -118,21 +116,26 @@ export default function ReactSearchAutocomplete(props) {
 ReactSearchAutocomplete.defaultProps = {
   items: [],
   fuseOptions: defaultFuseOptions,
-  onSearch: () => {},
-  onHover: () => {},
-  onSelect: () => {},
-  onClear: () => {},
+  onSearch: () => {
+  },
+  onHover: () => {
+  },
+  onSelect: () => {
+  },
+  onClear: () => {
+  },
   inputDebounce: DEFAULT_INPUT_DEBOUNCE,
   showIcon: true,
   showClear: true,
   maxResults: MAX_RESULTS,
   placeholder: '',
   autoFocus: false,
-  onFocus: () => {},
+  onFocus: () => {
+  },
   styling: {},
   resultStringKeyName: 'name',
   inputSearchString: '',
-  formatResult: (val) => val,
+  formatResult: (val) => val
 }
 
 ReactSearchAutocomplete.propTypes = {
@@ -152,39 +155,36 @@ ReactSearchAutocomplete.propTypes = {
   styling: PropTypes.object,
   resultStringKeyName: PropTypes.string,
   inputSearchString: PropTypes.string,
-  formatResult: PropTypes.func,
+  formatResult: PropTypes.func
 }
 
 const StyledReactSearchAutocomplete = styled.div`
   position: relative;
 
-  height: ${(props) => parseInt(props.theme.height) + 2 + 'px'};
+  height: ${(props) => props.theme.height};
+  width: ${(props) => props.theme.width};
 
-  > .wrapper {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-    border: ${(props) => props.theme.border};
-    border-radius: ${(props) => props.theme.borderRadius};
+  background-color: ${(props) => props.theme.backgroundColor};
+  border-radius: ${(props) => props.theme.borderRadius};
+  border: ${(props) => props.theme.border};
+  color: ${(props) => props.theme.color};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
+  z-index: ${(props) => props.theme.zIndex};
 
-    background-color: ${(props) => props.theme.backgroundColor};
-    color: ${(props) => props.theme.color};
+  &:hover {
+    box-shadow: ${(props) => props.theme.boxShadow};
+  }
 
-    font-size: ${(props) => props.theme.fontSize};
-    font-family: ${(props) => props.theme.fontFamily};
+  &:active {
+    box-shadow: ${(props) => props.theme.boxShadow};
+  }
 
-    z-index: ${(props) => props.theme.zIndex};
-
-    &:hover {
-      box-shadow: ${(props) => props.theme.boxShadow};
-    }
-    &:active {
-      box-shadow: ${(props) => props.theme.boxShadow};
-    }
-    &:focus-within {
-      box-shadow: ${(props) => props.theme.boxShadow};
-    }
+  &:focus-within {
+    box-shadow: ${(props) => props.theme.boxShadow};
   }
 `

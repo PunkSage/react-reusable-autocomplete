@@ -20,40 +20,37 @@ export default function Results(props) {
     setSearchString(result[resultStringKeyName])
   }
 
-  if (results?.length <= 0) {
-    return null
-  }
-
   return (
-    <StyledResults>
-      <div className="line" />
+    (results?.length > 0 && <StyledResults>
+      <div className='line' />
       <ul>
         {results.slice(0, maxResults).map((result) => {
           return (
             <li
               onMouseEnter={() => onHover(result)}
-              data-test="result"
+              data-test='result'
               key={`rsa-result-${result.id}`}
               onMouseDown={() => handleClick(result)}
               onClick={() => handleClick(result)}
             >
               <SearchIcon showIcon={showIcon} />
-              <div className="ellipsis" title={result[resultStringKeyName]}>
+              <div className='ellipsis' title={result[resultStringKeyName]}>
                 {formatResult(result[resultStringKeyName])}
               </div>
             </li>
           )
         })}
       </ul>
-    </StyledResults>
+    </StyledResults>)
   )
 }
 
 Results.defaultProps = {
   results: [],
-  setDisplayString: () => {},
+  setDisplayString: () => {
+  },
   resultStringKeyName: 'name',
-  formatResult: (val) => val,
+  formatResult: (val) => val
 }
 
 Results.propTypes = {
@@ -63,34 +60,39 @@ Results.propTypes = {
   showIcon: PropTypes.bool,
   maxResults: PropTypes.number,
   resultStringKeyName: PropTypes.string,
-  formatResult: PropTypes.func,
+  formatResult: PropTypes.func
 
 }
 
 const StyledResults = styled.div`
+
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  top: calc(100% - 5px);
+  left: -1px;
+  border: 1px solid #b8bbc3;
+  border-top: 0;
+  box-sizing: content-box;
+  border-radius: 0 0 4px 4px;
+
   > div.line {
     border-top-color: ${(props) => props.theme.lineColor};
     border-top-style: solid;
     border-top-width: 1px;
-
-    margin-bottom: 0px;
-    margin-left: 14px;
-    margin-right: 20px;
-    margin-top: 0px;
-
-    padding-bottom: 4px;
+    margin: 0 10px;
   }
 
   > ul {
     list-style-type: none;
     margin: 0;
-    padding: 0px 0 16px 0;
+    padding: 10px 0;
     max-height: ${(props) => props.theme.maxHeight};
 
     > li {
       display: flex;
       align-items: center;
-      padding: 4px 0 4px 0;
+      padding: 8px 0;
 
       &:hover {
         background-color: ${(props) => props.theme.hoverBackgroundColor};
@@ -102,6 +104,7 @@ const StyledResults = styled.div`
       }
     }
   }
+
   .ellipsis {
     white-space: nowrap;
     overflow: hidden;
