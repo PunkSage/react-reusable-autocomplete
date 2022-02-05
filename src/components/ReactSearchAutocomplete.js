@@ -91,7 +91,7 @@ export default function ReactSearchAutocomplete(props) {
           searchString={searchString}
           setSearchString={handleSetSearchString}
           autoFocus={autoFocus}
-          onBlur={() => {}}
+          onBlur={() => setResults([])}
           onFocus={onFocus}
           onClear={onClear}
           placeholder={placeholder}
@@ -161,7 +161,6 @@ ReactSearchAutocomplete.propTypes = {
 const StyledReactSearchAutocomplete = styled.div`
   position: relative;
 
-  height: ${(props) => props.theme.height};
   width: ${(props) => props.theme.width};
 
   display: flex;
