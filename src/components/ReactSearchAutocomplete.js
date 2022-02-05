@@ -160,13 +160,10 @@ ReactSearchAutocomplete.propTypes = {
 
 const StyledReactSearchAutocomplete = styled.div`
   position: relative;
-
   width: ${(props) => props.theme.width};
-
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   background-color: ${(props) => props.theme.backgroundColor};
   border-radius: ${(props) => props.theme.borderRadius};
   border: ${(props) => props.theme.border};
