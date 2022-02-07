@@ -1,8 +1,8 @@
 {
-  "name": "react-search-autocomplete",
-  "author": "Reale Roberto Josef Antonio",
+  "name": "react-reusable-autocomplete",
+  "author": "Konrad Szałwiński",
   "license": "MIT",
-  "version": "5.4.5",
+  "version": "1.0.0",
   "description": "A search box for React",
   "main": "dist/index.js",
   "scripts": {
