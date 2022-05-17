@@ -35,7 +35,7 @@ export default function Results(props) {
             >
               <SearchIcon showIcon={showIcon} />
               <div className='ellipsis' title={result[resultStringKeyName]}>
-                {formatResult(result[resultStringKeyName])}
+                {formatResult(result)}
               </div>
             </li>
           )
