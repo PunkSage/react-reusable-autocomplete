@@ -90,8 +90,6 @@ const StyledResults = styled.div`
     max-height: ${(props) => props.theme.maxHeight};
 
     > li {
-      display: flex;
-      align-items: center;
       padding: 8px 0;
 
       &:hover {

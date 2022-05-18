@@ -2,7 +2,7 @@
   "name": "react-reusable-autocomplete",
   "author": "Konrad Szałwiński",
   "license": "MIT",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A search box for React",
   "main": "dist/index.js",
   "scripts": {
