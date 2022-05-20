@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 import { SearchIcon } from './SearchIcon'
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
 
 export default function Results(props) {
@@ -21,34 +21,35 @@ export default function Results(props) {
   }
 
   return (
-    (results?.length > 0 && <StyledResults>
-      <div className='line' />
-      <ul>
-        {results.slice(0, maxResults).map((result) => {
-          return (
-            <li
-              onMouseEnter={() => onHover(result)}
-              data-test='result'
-              key={`rsa-result-${result.id}`}
-              onMouseDown={() => handleClick(result)}
-              onClick={() => handleClick(result)}
-            >
-              <SearchIcon showIcon={showIcon} />
-              <div className='ellipsis' title={result[resultStringKeyName]}>
-                {formatResult(result)}
-              </div>
-            </li>
-          )
-        })}
-      </ul>
-    </StyledResults>)
+    results?.length > 0 && (
+      <StyledResults>
+        <div className="line" />
+        <ul>
+          {results.slice(0, maxResults).map((result) => {
+            return (
+              <li
+                onMouseEnter={() => onHover(result)}
+                data-test="result"
+                key={`rsa-result-${result.id}`}
+                onMouseDown={() => handleClick(result)}
+                onClick={() => handleClick(result)}
+              >
+                <SearchIcon showIcon={showIcon} />
+                <div className="ellipsis" title={result[resultStringKeyName]}>
+                  {formatResult(result)}
+                </div>
+              </li>
+            )
+          })}
+        </ul>
+      </StyledResults>
+    )
   )
 }
 
 Results.defaultProps = {
   results: [],
-  setDisplayString: () => {
-  },
+  setDisplayString: () => {},
   resultStringKeyName: 'name',
   formatResult: (val) => val
 }
@@ -61,14 +62,11 @@ Results.propTypes = {
   maxResults: PropTypes.number,
   resultStringKeyName: PropTypes.string,
   formatResult: PropTypes.func
-
 }
 
 const StyledResults = styled.div`
-
   position: absolute;
   width: 100%;
-  background-color: white;
   top: calc(100% - 5px);
   left: -1px;
   border: 1px solid #b8bbc3;
@@ -77,6 +75,7 @@ const StyledResults = styled.div`
   border-radius: 0 0 4px 4px;
 
   > div.line {
+    display: none;
     border-top-color: ${(props) => props.theme.lineColor};
     border-top-style: solid;
     border-top-width: 1px;

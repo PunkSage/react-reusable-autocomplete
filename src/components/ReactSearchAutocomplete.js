@@ -1,11 +1,11 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import Fuse from 'fuse.js'
 import { defaultTheme, defaultFuseOptions } from '../config/config'
+import { debounce } from '../utils/utils'
 import Results from './Results'
 import SearchInput from './SearchInput'
+import Fuse from 'fuse.js'
+import PropTypes from 'prop-types'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
-import { debounce } from '../utils/utils'
 import styled from 'styled-components'
 
 export const DEFAULT_INPUT_DEBOUNCE = 200
@@ -24,6 +24,7 @@ export default function ReactSearchAutocomplete(props) {
     showIcon,
     showClear,
     maxResults,
+    maxWidth,
     placeholder,
     autoFocus,
     styling,
@@ -116,22 +117,17 @@ export default function ReactSearchAutocomplete(props) {
 ReactSearchAutocomplete.defaultProps = {
   items: [],
   fuseOptions: defaultFuseOptions,
-  onSearch: () => {
-  },
-  onHover: () => {
-  },
-  onSelect: () => {
-  },
-  onClear: () => {
-  },
+  onSearch: () => {},
+  onHover: () => {},
+  onSelect: () => {},
+  onClear: () => {},
   inputDebounce: DEFAULT_INPUT_DEBOUNCE,
   showIcon: true,
   showClear: true,
   maxResults: MAX_RESULTS,
   placeholder: '',
   autoFocus: false,
-  onFocus: () => {
-  },
+  onFocus: () => {},
   styling: {},
   resultStringKeyName: 'name',
   inputSearchString: '',
@@ -161,6 +157,7 @@ ReactSearchAutocomplete.propTypes = {
 const StyledReactSearchAutocomplete = styled.div`
   position: relative;
   width: ${(props) => props.theme.width};
+  maxwidth: ${(props) => props.theme.maxWidth};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -171,6 +168,7 @@ const StyledReactSearchAutocomplete = styled.div`
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
   z-index: ${(props) => props.theme.zIndex};
+  margin: ${(props) => props.theme.margin};
 
   &:hover {
     box-shadow: ${(props) => props.theme.boxShadow};
