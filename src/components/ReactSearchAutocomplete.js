@@ -13,24 +13,25 @@ export const MAX_RESULTS = 10
 
 export default function ReactSearchAutocomplete(props) {
   const {
-    items,
+    autoFocus,
+    formatResult,
     fuseOptions,
     inputDebounce,
-    onSearch,
-    onHover,
-    onSelect,
-    onFocus,
-    onClear,
-    showIcon,
-    showClear,
+    inputSearchString,
+    items,
     maxResults,
     maxWidth,
+    onBlur = () => setResults([]),
+    onClear,
+    onFocus,
+    onHover,
+    onSearch,
+    onSelect,
     placeholder,
-    autoFocus,
-    styling,
     resultStringKeyName,
-    inputSearchString,
-    formatResult
+    showClear,
+    showIcon,
+    styling
   } = props
 
   const theme = { ...defaultTheme, ...styling }
@@ -92,7 +93,7 @@ export default function ReactSearchAutocomplete(props) {
           searchString={searchString}
           setSearchString={handleSetSearchString}
           autoFocus={autoFocus}
-          onBlur={() => setResults([])}
+          onBlur={onBlur}
           onFocus={onFocus}
           onClear={onClear}
           placeholder={placeholder}

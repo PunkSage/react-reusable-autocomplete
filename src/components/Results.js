@@ -67,25 +67,16 @@ Results.propTypes = {
 const StyledResults = styled.div`
   position: absolute;
   width: 100%;
-  top: calc(100% - 5px);
+  top: calc(100% + 3px);
   left: -1px;
   border: 1px solid #b8bbc3;
-  border-top: 0;
   box-sizing: content-box;
-  border-radius: 0 0 4px 4px;
-
-  > div.line {
-    display: none;
-    border-top-color: ${(props) => props.theme.lineColor};
-    border-top-style: solid;
-    border-top-width: 1px;
-    margin: 0 10px;
-  }
+  border-radius: 6px;
 
   > ul {
+    padding: 1px 0;
     list-style-type: none;
     margin: 0;
-    padding: 10px 0;
     max-height: ${(props) => props.theme.maxHeight};
 
     > li {
