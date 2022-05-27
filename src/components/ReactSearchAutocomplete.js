@@ -5,8 +5,7 @@ import SearchInput from './SearchInput'
 import Fuse from 'fuse.js'
 import PropTypes from 'prop-types'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { ThemeProvider } from 'styled-components'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 
 export const DEFAULT_INPUT_DEBOUNCE = 200
 export const MAX_RESULTS = 10
@@ -158,7 +157,7 @@ ReactSearchAutocomplete.propTypes = {
 const StyledReactSearchAutocomplete = styled.div`
   position: relative;
   width: ${(props) => props.theme.width};
-  maxwidth: ${(props) => props.theme.maxWidth};
+  max-width: ${(props) => props.theme.maxWidth};
   display: flex;
   flex-direction: column;
   justify-content: center;

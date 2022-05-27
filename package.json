@@ -55,7 +55,7 @@
   "homepage": "https://github.com/sickdyd/react-search-autocomplete#readme",
   "dependencies": {
     "fuse.js": "^6.4.4",
-    "styled-components": "^4.4.1"
+    "styled-components": "5.3.5"
   },
   "peerDependencies": {
     "react": "17.0.2",
