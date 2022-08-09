@@ -27,7 +27,6 @@ export default function ReactReusableAutocomplete(props) {
         onSelect,
         placeholder,
         resultStringKeyName,
-        showClear,
         showIcon,
         styling
     } = props
@@ -37,7 +36,7 @@ export default function ReactReusableAutocomplete(props) {
     const fuse = useRef(new Fuse(items, options))
     const [searchString, setSearchString] = useState(inputSearchString)
     const [results, setResults] = useState()
-    
+
     const handleOnSearch = useCallback(inputDebounce > 0 ? debounce((keyword) => callOnSearch(keyword), inputDebounce):(keyword) => callOnSearch(keyword), [items])
 
     useEffect(() => {
@@ -46,13 +45,14 @@ export default function ReactReusableAutocomplete(props) {
 
     const callOnSearch = (keyword) => {
         let newResults = []
-        if (keyword?.length >= 0) {
-            newResults = fuseResults(keyword)
-            setResults(newResults)
-            onSearch(keyword, newResults)
-        } else {
-            setResults(newResults)
+        if (keyword==='') {
+            /* force fuse to display all results instead of empty list */
+            newResults = getResults(' ')
+        } else if (keyword?.length > 0) {
+            newResults = getResults(keyword)
         }
+        setResults(newResults)
+        onSearch(keyword, newResults)
     }
 
     useLayoutEffect(() => {
@@ -60,7 +60,7 @@ export default function ReactReusableAutocomplete(props) {
     }, [inputSearchString])
 
     useEffect(() => {
-        searchString?.length > 0 && results?.length > 0 && setResults(fuseResults(searchString))
+        searchString?.length > 0 && results?.length > 0 && setResults(getResults(searchString))
     }, [items])
 
     const handleOnClick = (result) => {
@@ -68,13 +68,11 @@ export default function ReactReusableAutocomplete(props) {
         onSelect(result)
     }
 
-    const fuseResults = (keyword = ' ') => {
-        const searchWord = keyword==='' ? ' ':keyword
-        const results = fuse.current
-                .search(searchWord, { limit: maxResults })
+    const getResults = (keyword = ' ') => {
+        return fuse.current
+                .search(keyword, { limit: maxResults })
                 .map((result) => ({ ...result.item }))
                 .slice(0, maxResults)
-        return results
     }
 
     const handleSetSearchString = ({ target }) => {
@@ -84,11 +82,7 @@ export default function ReactReusableAutocomplete(props) {
     }
 
     const handleFocus = () => {
-        if (searchString=='') {
-            handleOnSearch(' ')
-        } else {
-            handleOnSearch(searchString)
-        }
+        handleOnSearch(searchString)
         onFocus()
     }
 
@@ -103,7 +97,6 @@ export default function ReactReusableAutocomplete(props) {
                     onClear={onClear}
                     placeholder={placeholder}
                     showIcon={showIcon}
-                    showClear={showClear}
             />
             <Results
                     results={results}
@@ -141,6 +134,7 @@ ReactReusableAutocomplete.defaultProps = {
     placeholder: '',
     autoFocus: false,
     onFocus: () => {
+        /* intentionally empty */
     },
     styling: {},
     resultStringKeyName: 'name',

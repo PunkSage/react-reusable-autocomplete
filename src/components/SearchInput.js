@@ -2,58 +2,52 @@ import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { SearchIcon } from './SearchIcon'
 import styled from 'styled-components'
-import { ClearIcon } from './ClearIcon'
 
 export default function SearchInput({
-  searchString,
-  setSearchString,
-  autoFocus,
-  onBlur,
-  onFocus,
-  onClear,
-  placeholder,
-  showIcon,
-  showClear
-}) {
-  const ref = useRef()
-  let manualFocus = true
+                                        searchString,
+                                        setSearchString,
+                                        autoFocus = false,
+                                        onBlur,
+                                        onFocus,
+                                        placeholder,
+                                        showIcon = true,
+                                    }) {
+    const ref = useRef()
 
-  const handleOnFocus = () => {
-    manualFocus && onFocus()
-  }
+    const handleOnFocus = () => {
+        onFocus()
+    }
 
-  return (
-    <StyledSearchInput>
-      <SearchIcon showIcon={showIcon} />
-      <input
-        ref={ref}
-        spellCheck={false}
-        value={searchString}
-        onInput={setSearchString}
-        onBlur={onBlur}
-        onFocus={handleOnFocus}
-        placeholder={placeholder}
-        autoFocus={autoFocus}
-      />
-    </StyledSearchInput>
-  )
+    return (
+            <StyledSearchInput>
+                <SearchIcon showIcon={showIcon}/>
+                <input
+                        ref={ref}
+                        spellCheck={false}
+                        value={searchString}
+                        onInput={setSearchString}
+                        onBlur={onBlur}
+                        onFocus={handleOnFocus}
+                        placeholder={placeholder}
+                        autoFocus={autoFocus}
+                />
+            </StyledSearchInput>
+    )
 }
 
 SearchInput.defaultProps = {
-  showIcon: true,
-  showClear: true
+    showIcon: true,
 }
 
 SearchInput.propTypes = {
-  searchString: PropTypes.string.isRequired,
-  setSearchString: PropTypes.func.isRequired,
-  autoFocus: PropTypes.bool,
-  onBlur: PropTypes.func.isRequired,
-  onFocus: PropTypes.func,
-  onClear: PropTypes.func,
-  placeholder: PropTypes.string,
-  showIcon: PropTypes.bool,
-  showClear: PropTypes.bool
+    searchString: PropTypes.string.isRequired,
+    setSearchString: PropTypes.func.isRequired,
+    autoFocus: PropTypes.bool,
+    onBlur: PropTypes.func.isRequired,
+    onFocus: PropTypes.func,
+    onClear: PropTypes.func,
+    placeholder: PropTypes.string,
+    showIcon: PropTypes.bool,
 }
 
 const StyledSearchInput = styled.div`
