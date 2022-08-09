@@ -49,7 +49,7 @@ export default function Results(props) {
 
 Results.defaultProps = {
   results: [],
-  setDisplayString: () => {},
+  setDisplayString: () => { /* intentionally empty */ },
   resultStringKeyName: 'name',
   formatResult: (val) => val
 }

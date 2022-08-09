@@ -1,3 +1,3 @@
-import ReactSearchAutocomplete from './components/ReactSearchAutocomplete.js'
+import ReactReusableAutocomplete from './components/ReactReusableAutocomplete.js'
 
-export { ReactSearchAutocomplete }
+export { ReactReusableAutocomplete }

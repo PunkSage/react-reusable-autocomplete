@@ -2,11 +2,10 @@
   "name": "react-reusable-autocomplete",
   "author": "Konrad Szałwiński",
   "license": "MIT",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A search box for React",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest --verbose --runInBand",
     "build": "rm -rf ./dist/*.* && babel ./src --out-dir ./dist --ignore **/*.test.js && minify ./dist/ --out-dir ./dist/",
     "build:dev": "rm -rf ./dist/*.* && babel ./src --out-dir ./dist --ignore **/*.test.js",
     "build-watch": "rm -rf ./dist/*.* && babel ./src --out-dir ./dist --ignore **/*.test.js --watch && minify ./dist/ --out-dir ./dist/"
@@ -44,22 +43,14 @@
       "last 1 safari version"
     ]
   },
-  "jest": {
-    "setupFiles": [
-      "jest-localstorage-mock"
-    ]
-  },
-  "bugs": {
-    "url": "https://github.com/sickdyd/react-search-autocomplete/issues"
-  },
-  "homepage": "https://github.com/sickdyd/react-search-autocomplete#readme",
   "dependencies": {
     "fuse.js": "^6.4.4",
     "styled-components": "5.3.5"
   },
   "peerDependencies": {
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "prop-types": "15.8.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",

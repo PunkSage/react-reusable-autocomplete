@@ -18,12 +18,6 @@ export default function SearchInput({
   const ref = useRef()
   let manualFocus = true
 
-  const setFocus = () => {
-    manualFocus = false
-    ref.current.focus()
-    manualFocus = true
-  }
-
   const handleOnFocus = () => {
     manualFocus && onFocus()
   }
@@ -40,13 +34,6 @@ export default function SearchInput({
         onFocus={handleOnFocus}
         placeholder={placeholder}
         autoFocus={autoFocus}
-      />
-      <ClearIcon
-        showClear={showClear}
-        setSearchString={setSearchString}
-        searchString={searchString}
-        onClear={onClear}
-        setFocus={setFocus}
       />
     </StyledSearchInput>
   )
